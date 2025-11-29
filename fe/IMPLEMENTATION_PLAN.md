@@ -107,7 +107,7 @@ fe/
    - Include edit and delete buttons
    - Format created date nicely
 
-**Deliverable:** Project list view working
+**Deliverable:** Project list view workingc
 
 ---
 
