@@ -9,7 +9,7 @@
     // See also https://aka.ms/tsconfig/module
     "module": "commonjs",
     "target": "esnext",
-    "types": ["node"], // Node.js types include karo
+    // types array removed - TypeScript will auto-discover from node_modules/@types
     "lib": ["esnext"], // ES library types
 
     // Other Outputs
