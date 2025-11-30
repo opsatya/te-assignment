@@ -89,7 +89,7 @@ const ProjectList: React.FC = () => {
 
   // Project delete karo
   const handleDelete = async (id: string) => {
-    if (!window.confirm("Kya aap sure hain ki aap is project ko delete karna chahte hain?")) {
+    if (!window.confirm("are you sure, you want to delete this project?")) {
       return;
     }
 
