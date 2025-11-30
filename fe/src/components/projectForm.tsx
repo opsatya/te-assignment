@@ -9,7 +9,6 @@ type Props = {
   onSuccess: () => void; // Success ke baad callback
 };
 
-// Sabhi available skills - UI image ke according
 const allSkills = [
   "Asp.Net",
   "PHP",
@@ -30,13 +29,13 @@ const allSkills = [
   "JavaScript/jQuery"
 ];
 
-// Number of members options - dropdown ke liye
+// Number of members options
 const memberOptions = [1, 2, 3, 4, 5];
 
 const ProjectForm: React.FC<Props> = ({ mode, initialData, onSuccess }) => {
   const navigate = useNavigate();
   
-  // Form state - initial values set karo
+  // Form state - initial values 
   const [form, setForm] = useState<CreateProjectDto>({
     projectName: "",
     projectDescription: "",
@@ -48,7 +47,7 @@ const ProjectForm: React.FC<Props> = ({ mode, initialData, onSuccess }) => {
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [loading, setLoading] = useState(false);
 
-  // Edit mode mein existing data ko form mein load karo
+  // Edit mode mein existing data ko form mein load karne ke liye use
   useEffect(() => {
     if (mode === "edit" && initialData) {
       setForm({
