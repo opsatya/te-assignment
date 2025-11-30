@@ -4,9 +4,50 @@ import projectRoutes from './routes/project.routes';
 
 const app = express();
 
+// CORS configuration - multiple origins allow karne ke liye
+const allowedOrigins = [
+  'http://localhost:5173', // Local development
+  'http://localhost:3000', // Alternative local port
+  'https://project-management-tawny-chi.vercel.app', // Production frontend
+];
+
+// Environment variable se additional origins add karo (comma-separated)
+if (process.env.FRONTEND_URL) {
+  const envOrigins = process.env.FRONTEND_URL.split(',').map(url => url.trim());
+  allowedOrigins.push(...envOrigins);
+}
+
+// CORS middleware with origin validation
 app.use(cors({
-  origin: process.env.FRONTEND_URL || 'http://localhost:5173', 
-  credentials: true 
+  origin: (origin, callback) => {
+    // Allow requests with no origin (like mobile apps, Postman, etc.)
+    if (!origin) {
+      return callback(null, true);
+    }
+    
+    // Check if origin is in allowed list
+    if (allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else if (origin.endsWith('.vercel.app')) {
+      // Allow all Vercel deployments (for preview deployments, etc.)
+      callback(null, true);
+    } else {
+      // Log for debugging
+      console.log(`CORS blocked origin: ${origin}`);
+      // In development, allow all origins for easier testing
+      if (process.env.NODE_ENV !== 'production') {
+        callback(null, true);
+      } else if (process.env.ALLOW_ALL_ORIGINS === 'true') {
+        // In production, only allow if explicitly set
+        callback(null, true);
+      } else {
+        callback(new Error('Not allowed by CORS'));
+      }
+    }
+  },
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
 }));
 
 app.use(express.json());
