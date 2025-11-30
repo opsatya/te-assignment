@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import type { Project } from "../types/project.types";
 import * as api from "../services/api.service";
-import { useNavigate } from "react-router-dom";
 
 type Props = {
   project: Project;
@@ -11,7 +10,6 @@ type Props = {
 
 const ProjectCard: React.FC<Props> = ({ project, onEdit, onDeleteSuccess }) => {
   const [loading, setLoading] = useState(false);
-  const navigate = useNavigate();
 
   const handleDelete = async () => {
     if (!confirm("Are you sure you want to delete this project?")) return;
