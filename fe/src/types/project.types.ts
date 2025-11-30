@@ -5,7 +5,7 @@ export type Project = {
   skillSet: string[];             // array of selected skills, required
   noOfMembers: number;            // required (1..n) — UI shows 5 as "5 or 5+"
   isActive: boolean;              // required
-  createdDate: Date;              // auto-generated (server timestamp)
+  createdDate: string | Date;     // auto-generated (server timestamp) - API se string aayega
 }
 
 export type CreateProjectDto = {

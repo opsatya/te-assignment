@@ -99,7 +99,6 @@ fe/
    - Include buttons/actions for:
      - Edit project
      - Delete project
-     - View project details (optional)
 
 2. Create `src/components/ProjectCard.tsx` (optional, for better organization)
    - Display individual project information
