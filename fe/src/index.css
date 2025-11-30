@@ -27,6 +27,11 @@ body {
   gap: 40px;
 }
 
+/* Header actions - desktop gap */
+.header-actions {
+  gap: 335px;
+}
+
 /* Responsive grid for skills */
 .responsive-skills-grid {
   display: grid;
@@ -58,8 +63,8 @@ body {
   /* Header actions responsive */
   .header-actions {
     flex-direction: column;
-    gap: 15px;
-    align-items: stretch !important;
+    gap: 25px !important;
+    align-items:stretch !important;
   }
 
   .header-actions button {

@@ -206,8 +206,7 @@ const ProjectList: React.FC = () => {
         display: "flex", 
         justifyContent: "space-between", 
         alignItems: "center",
-        marginBottom: "20px",
-        gap: "335px"
+        marginBottom: "20px"
       }}>
         {/* Add Project button */}
         <button
