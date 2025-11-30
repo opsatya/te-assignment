@@ -10,7 +10,7 @@ const ProjectList: React.FC = () => {
   const [error, setError] = useState("");
   const [searching, setSearching] = useState(false);
   const navigate = useNavigate();
-  const searchTimeoutRef = useRef<NodeJS.Timeout | null>(null); // Search timeout ko track karne ke liye
+  const searchTimeoutRef = useRef<number | null>(null); // Search timeout ko track karne ke liye (browser mein number return hota hai)
   const isMountedRef = useRef(true); // Component mount hai ya nahi check karne ke liye
   const isLoadingRef = useRef(false); // Currently loading hai ya nahi - duplicate calls prevent karne ke liye
   const hasSearchedRef = useRef(false); // User ne kabhi search kiya hai ya nahi - initial empty search prevent karne ke liye
@@ -94,11 +94,23 @@ const ProjectList: React.FC = () => {
     }
 
     try {
+      // Delete API call karo
       await api.deleteProject(id);
-      // List ko refresh karo
-      fetchProjects();
+      
+      // Success - list ko refresh karo
+      // Optimistically remove from list (optional - better UX)
+      setProjects(prev => prev.filter(p => p._id !== id));
+      
+      // Ya full refresh karo (safer approach)
+      // fetchProjects();
     } catch (err: any) {
-      alert("Delete fail ho gaya: " + (err.message || "Unknown error"));
+      // Error handle karo - user ko clear message do
+      const errorMessage = err.message || "Unknown error";
+      alert("Delete fail ho gaya: " + errorMessage);
+      console.error("Delete error:", err);
+      
+      // Error ke baad bhi list refresh karo taaki correct state dikhe
+      fetchProjects();
     }
   };
 
