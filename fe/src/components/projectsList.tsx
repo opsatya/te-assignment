@@ -206,7 +206,8 @@ const ProjectList: React.FC = () => {
         display: "flex", 
         justifyContent: "space-between", 
         alignItems: "center",
-        marginBottom: "20px"
+        marginBottom: "20px",
+        gap: "335px"
       }}>
         {/* Add Project button */}
         <button
@@ -219,15 +220,22 @@ const ProjectList: React.FC = () => {
             borderRadius: "4px",
             cursor: "pointer",
             fontSize: "16px",
-            whiteSpace: "nowrap"
+            whiteSpace: "nowrap",
+            flexShrink: 0
           }}
         >
           Add Project
         </button>
 
         {/* Search bar */}
-        <div className="search-container" style={{ display: "flex", alignItems: "center", gap: "10px", flex: "1" }}>
-          <span style={{ color: "red", fontSize: "clamp(12px, 2vw, 14px)", whiteSpace: "nowrap" }}>
+        <div className="search-container" style={{ 
+          display: "flex", 
+          alignItems: "center", 
+          gap: "10px", 
+          flex: "1",
+          minWidth: 0
+        }}>
+          <span style={{ color: "red", fontSize: "clamp(12px, 2vw, 14px)", whiteSpace: "nowrap", flexShrink: 0 }}>
             Search by Project Name or Project Description
           </span>
           <SearchBar onSearch={handleSearch} />
