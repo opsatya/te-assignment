@@ -51,7 +51,9 @@ const SearchBar: React.FC<Props> = ({ onSearch }) => {
         border: "1px solid #ddd",
         borderRadius: "4px",
         fontSize: "14px",
-        minWidth: "200px"
+        minWidth: "200px",
+        width: "100%",
+        maxWidth: "400px"
       }}
     />
   );

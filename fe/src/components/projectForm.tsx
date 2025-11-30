@@ -144,9 +144,15 @@ const ProjectForm: React.FC<Props> = ({ mode, initialData, onSuccess }) => {
   };
 
   return (
-    <div style={{ padding: "20px", maxWidth: "800px", margin: "0 auto" }}>
+    <div style={{ 
+      padding: "20px", 
+      maxWidth: "800px", 
+      margin: "0 auto",
+      width: "100%",
+      boxSizing: "border-box"
+    }}>
       {/* Form title */}
-      <h1 style={{ 
+      <h1 className="form-title" style={{ 
         fontSize: "24px", 
         fontWeight: "bold", 
         marginBottom: "20px",
@@ -227,10 +233,13 @@ const ProjectForm: React.FC<Props> = ({ mode, initialData, onSuccess }) => {
         </div>
 
         {/* Skill Set - Multi-select */}
-        <div style={{ marginBottom: "20px" }}>
-          <div style={{ display: "flex", gap: "40px" }}>
+        <div style={{ marginBottom: "20px" }} className="form-section">
+          <div className="responsive-flex">
             {/* Skills list - left side */}
-            <div style={{ flex: "0 0 200px" }}>
+            <div style={{ 
+              flex: "0 0 200px",
+              minWidth: "200px"
+            }}>
               <label style={{ display: "block", marginBottom: "10px", fontWeight: "bold" }}>
                 MultiSelect Values:
               </label>
@@ -250,7 +259,7 @@ const ProjectForm: React.FC<Props> = ({ mode, initialData, onSuccess }) => {
             </div>
 
             {/* Multi-select input - right side */}
-            <div style={{ flex: "1" }}>
+            <div style={{ flex: "1", minWidth: 0 }}>
               <label style={{ display: "block", marginBottom: "5px", fontWeight: "bold" }}>
                 Skill Set<span style={{ color: "red" }}>*</span>
               </label>
@@ -308,12 +317,7 @@ const ProjectForm: React.FC<Props> = ({ mode, initialData, onSuccess }) => {
                 )}
               </div>
               {/* Skills selection checkboxes */}
-              <div style={{ 
-                marginTop: "10px",
-                display: "grid",
-                gridTemplateColumns: "repeat(3, 1fr)",
-                gap: "8px"
-              }}>
+              <div className="responsive-skills-grid" style={{ marginTop: "10px" }}>
                 {allSkills.map(skill => (
                   <label
                     key={skill}
@@ -345,65 +349,41 @@ const ProjectForm: React.FC<Props> = ({ mode, initialData, onSuccess }) => {
 
         {/* No of Members - Dropdown */}
         <div style={{ marginBottom: "20px" }}>
-          <div style={{ display: "flex", gap: "40px" }}>
-            {/* Dropdown values list - right side */}
-            <div style={{ flex: "1" }}>
-              <label style={{ display: "block", marginBottom: "5px", fontWeight: "bold" }}>
-                No of Members<span style={{ color: "red" }}>*</span>
-              </label>
-              <select
-                value={form.noOfMembers}
-                onChange={(e) => {
-                  setForm({ ...form, noOfMembers: Number(e.target.value) });
-                  if (errors.noOfMembers) {
-                    setErrors(prev => {
-                      const newErrors = { ...prev };
-                      delete newErrors.noOfMembers;
-                      return newErrors;
-                    });
-                  }
-                }}
-                style={{
-                  width: "100%",
-                  padding: "8px",
-                  border: "1px solid #ddd",
-                  borderRadius: "4px",
-                  fontSize: "14px"
-                }}
-              >
-                {memberOptions.map(num => (
-                  <option key={num} value={num}>
-                    {num}
-                  </option>
-                ))}
-                <option value={5}>5 or 5+</option>
-              </select>
-              {errors.noOfMembers && (
-                <p style={{ color: "red", fontSize: "12px", marginTop: "5px" }}>
-                  {errors.noOfMembers}
-                </p>
-              )}
-            </div>
-
-            {/* Dropdown values list - right side */}
-            <div style={{ flex: "0 0 150px" }}>
-              <label style={{ display: "block", marginBottom: "10px", fontWeight: "bold" }}>
-                DropDown Values:
-              </label>
-              <div style={{ 
-                border: "1px solid #ddd", 
-                padding: "10px", 
-                borderRadius: "4px"
-              }}>
-                {memberOptions.map((num, index) => (
-                  <div key={num} style={{ marginBottom: "5px" }}>
-                    {index + 1}) {num}
-                  </div>
-                ))}
-                <div>5) 5 or 5+</div>
-              </div>
-            </div>
-          </div>
+          <label style={{ display: "block", marginBottom: "5px", fontWeight: "bold" }}>
+            No of Members<span style={{ color: "red" }}>*</span>
+          </label>
+          <select
+            value={form.noOfMembers}
+            onChange={(e) => {
+              setForm({ ...form, noOfMembers: Number(e.target.value) });
+              if (errors.noOfMembers) {
+                setErrors(prev => {
+                  const newErrors = { ...prev };
+                  delete newErrors.noOfMembers;
+                  return newErrors;
+                });
+              }
+            }}
+            style={{
+              width: "100%",
+              padding: "8px",
+              border: "1px solid #ddd",
+              borderRadius: "4px",
+              fontSize: "14px"
+            }}
+          >
+            {memberOptions.map(num => (
+              <option key={num} value={num}>
+                {num}
+              </option>
+            ))}
+            <option value={5}>5 or 5+</option>
+          </select>
+          {errors.noOfMembers && (
+            <p style={{ color: "red", fontSize: "12px", marginTop: "5px" }}>
+              {errors.noOfMembers}
+            </p>
+          )}
         </div>
 
         {/* Is Active checkbox */}
@@ -420,7 +400,11 @@ const ProjectForm: React.FC<Props> = ({ mode, initialData, onSuccess }) => {
         </div>
 
         {/* Action buttons */}
-        <div style={{ display: "flex", gap: "10px", justifyContent: "center" }}>
+        <div className="form-buttons" style={{ 
+          display: "flex", 
+          gap: "10px", 
+          justifyContent: "center"
+        }}>
           <button
             type="submit"
             disabled={loading}

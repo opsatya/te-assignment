@@ -1,0 +1,146 @@
+/* Global responsive styles */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Responsive container */
+.responsive-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Responsive flex container */
+.responsive-flex {
+  display: flex;
+  gap: 40px;
+}
+
+/* Responsive grid for skills */
+.responsive-skills-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+/* Media queries for mobile devices */
+@media (max-width: 768px) {
+  .responsive-flex {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .responsive-skills-grid {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  .responsive-container {
+    padding: 15px;
+  }
+
+  /* Table responsive wrapper */
+  .table-wrapper {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Header actions responsive */
+  .header-actions {
+    flex-direction: column;
+    gap: 15px;
+    align-items: stretch !important;
+  }
+
+  .header-actions button {
+    width: 100%;
+  }
+
+  .search-container {
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+  }
+
+  .search-container span {
+    text-align: center;
+  }
+
+  .search-container input {
+    width: 100% !important;
+    min-width: 100% !important;
+  }
+}
+
+/* Media queries for tablets */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .responsive-skills-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .responsive-flex {
+    gap: 30px;
+  }
+}
+
+/* Responsive table styles */
+@media (max-width: 768px) {
+  table {
+    font-size: 12px;
+  }
+
+  table th,
+  table td {
+    padding: 8px 4px !important;
+    white-space: nowrap;
+  }
+
+  table th:first-child {
+    position: sticky;
+    left: 0;
+    background-color: #007bff !important;
+    color: white !important;
+    z-index: 2;
+    box-shadow: 2px 0 4px rgba(0, 0, 0, 0.1);
+  }
+
+  table td:first-child {
+    position: sticky;
+    left: 0;
+    background-color: white !important;
+    color: #000 !important;
+    z-index: 1;
+    font-weight: 500;
+    box-shadow: 2px 0 4px rgba(0, 0, 0, 0.1);
+  }
+}
+
+/* Responsive form styles */
+@media (max-width: 768px) {
+  .form-title {
+    font-size: 20px !important;
+  }
+
+  .form-section {
+    margin-bottom: 15px !important;
+  }
+
+  .form-buttons {
+    flex-direction: column;
+  }
+
+  .form-buttons button {
+    width: 100%;
+  }
+}
+

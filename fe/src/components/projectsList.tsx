@@ -190,10 +190,10 @@ const ProjectList: React.FC = () => {
   }
 
   return (
-    <div style={{ padding: "20px" }}>
+    <div className="responsive-container" style={{ padding: "20px" }}>
       {/* Header - My Project title */}
       <h1 style={{ 
-        fontSize: "24px", 
+        fontSize: "clamp(20px, 4vw, 24px)", 
         fontWeight: "bold", 
         marginBottom: "20px",
         textDecoration: "underline"
@@ -202,7 +202,7 @@ const ProjectList: React.FC = () => {
       </h1>
 
       {/* Actions bar - Add Project button aur Search */}
-      <div style={{ 
+      <div className="header-actions" style={{ 
         display: "flex", 
         justifyContent: "space-between", 
         alignItems: "center",
@@ -218,15 +218,16 @@ const ProjectList: React.FC = () => {
             padding: "10px 20px",
             borderRadius: "4px",
             cursor: "pointer",
-            fontSize: "16px"
+            fontSize: "16px",
+            whiteSpace: "nowrap"
           }}
         >
           Add Project
         </button>
 
         {/* Search bar */}
-        <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-          <span style={{ color: "red", fontSize: "14px" }}>
+        <div className="search-container" style={{ display: "flex", alignItems: "center", gap: "10px", flex: "1" }}>
+          <span style={{ color: "red", fontSize: "clamp(12px, 2vw, 14px)", whiteSpace: "nowrap" }}>
             Search by Project Name or Project Description
           </span>
           <SearchBar onSearch={handleSearch} />
@@ -246,11 +247,13 @@ const ProjectList: React.FC = () => {
           Koi projects nahi mila
         </p>
       ) : (
-        <table style={{ 
-          width: "100%", 
-          borderCollapse: "collapse",
-          border: "1px solid #ddd"
-        }}>
+        <div className="table-wrapper">
+          <table style={{ 
+            width: "100%", 
+            borderCollapse: "collapse",
+            border: "1px solid #ddd",
+            minWidth: "800px"
+          }}>
           <thead>
             <tr style={{ backgroundColor: "#007bff", color: "white" }}>
               <th style={{ padding: "12px", textAlign: "left", border: "1px solid #ddd" }}>
@@ -332,6 +335,7 @@ const ProjectList: React.FC = () => {
             ))}
           </tbody>
         </table>
+        </div>
       )}
 
       {/* Searching indicator */}
