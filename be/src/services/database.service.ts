@@ -15,7 +15,7 @@ const connectDB = async () => {
         await mongoose.connect(uri);
         console.log("MongoDB successfully connect ho gaya");
         
-        mongoose.connection.on('error', (err) => {
+        mongoose.connection.on('error', (err: Error) => {
             console.log('MongoDB connection error:', err);
         });
         
