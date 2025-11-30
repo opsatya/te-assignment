@@ -28,7 +28,7 @@ async function handleResponse(res: Response) {
 // Network errors handle karne ke liye helper
 function handleFetchError(error: any): never {
   if (error instanceof TypeError && error.message.includes('fetch')) {
-    throw new Error("Backend server connect nahi ho raha. Server running hai ya nahi check karo.");
+    throw new Error("Backend server is not connected. Check Server is running or not.");
   }
   throw error;
 }
